@@ -1,0 +1,25 @@
+name: flutter_shopify_starter
+description: A new Flutter project.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^0.1.3
+  provider:
+  flutter_simple_shopify:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_driver:
+    sdk: flutter
+  test: 1.15.0
+  pedantic_mono:
+
+flutter:
+  uses-material-design: true
