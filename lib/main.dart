@@ -11,7 +11,7 @@ Future<void> main() async {
   ShopifyConfig.setConfig(
     DotEnv().env['STOREFRONT_API_ACCESS_TOKEN'],
     DotEnv().env['STORE_URL'],
-    '2020-04',
+    '2020-07',
   );
   runApp(MyApp());
 }
@@ -19,9 +19,24 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final typography = Typography.material2018();
+    var appBartTextTheme = typography.englishLike.merge(typography.black);
+    appBartTextTheme = appBartTextTheme.copyWith(
+        headline6: appBartTextTheme.headline6.copyWith(fontSize: 16),
+        subtitle1: appBartTextTheme.subtitle1);
+
     return MaterialApp(
       title: 'Shopify Example',
-      theme: ThemeData(primaryColor: Colors.redAccent),
+      theme: ThemeData(
+          primaryColor: Colors.black,
+          appBarTheme: AppBarTheme(
+            color: Colors.white,
+            textTheme: appBartTextTheme,
+            iconTheme: const IconThemeData(
+              color: Color(0xFF666666),
+            ),
+            elevation: 0,
+          )),
       home: MyHomePage(),
     );
   }
@@ -53,7 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
         currentIndex: _currentIndex,
         onTap: _onNavigationBarItemClick,
         fixedColor: Theme.of(context).primaryColor,
-        unselectedItemColor: Colors.black,
+        unselectedItemColor: Colors.black38,
+        type: BottomNavigationBarType.fixed,
+        selectedFontSize: 11,
+        unselectedFontSize: 11,
         items: [
           const BottomNavigationBarItem(
               icon: Icon(Icons.home), title: Text('Home')),

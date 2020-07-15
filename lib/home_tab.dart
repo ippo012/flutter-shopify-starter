@@ -32,6 +32,7 @@ class _HomeTabState extends State<HomeTab> {
                   crossAxisCount: 2,
                   mainAxisSpacing: 16,
                   crossAxisSpacing: 16,
+                  childAspectRatio: 0.6,
                 ),
                 itemCount: products.length,
                 itemBuilder: (_, int index) =>
@@ -59,30 +60,56 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   Widget _buildProductThumbnail(Product product) {
+    final productVariants = product.productVariants;
     return InkWell(
       onTap: () => _navigateToProductDetailScreen(product),
       child: Container(
-        alignment: Alignment.bottomCenter,
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: product?.images?.first?.originalSource != null
-            ? BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                      product.images.first.originalSource,
-                    )))
-            : const BoxDecoration(),
-        child: Container(
-          width: MediaQuery.of(context).size.width,
           alignment: Alignment.bottomCenter,
-          child: Text(
-            product.title,
-            style: const TextStyle(
-                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ),
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: (MediaQuery.of(context).size.width - 48) / 2,
+                decoration: product?.images?.first?.originalSource != null
+                    ? BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                              product.images.first.originalSource,
+                            )))
+                    : const BoxDecoration(),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(top: 8),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                child: Text(
+                  product.title,
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontWeight: FontWeight.normal),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(top: 4),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                child: Text(
+                  // ignore: lines_longer_than_80_chars
+                  '${product.productVariants.first.price.currencySymbol}${productVariants.first.price.amount.replaceFirst(".0", "")}',
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          )),
     );
   }
 
