@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_simple_shopify/flutter_simple_shopify.dart';
 import 'collection_tab.dart';
 import 'home_tab.dart';
 import 'profile_tab.dart';
 import 'search_tab.dart';
 
-void main() {
+Future<void> main() async {
+  await DotEnv().load('.env');
   ShopifyConfig.setConfig(
-    "STOREFRONT-API-ACCESS-TOKEN",
-    "YOUR-SHOPIFY-WEBSITE",
-    "2020-04",
+    DotEnv().env['STOREFRONT_API_ACCESS_TOKEN'],
+    DotEnv().env['STORE_URL'],
+    '2020-04',
   );
   runApp(MyApp());
 }
