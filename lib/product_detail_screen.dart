@@ -45,6 +45,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 onPressed: () => Navigator.of(context).pop(),
               )
             : null,
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.shopping_cart,
+              size: 16,
+            ),
+            onPressed: () {},
+          )
+        ],
       ),
       body: ListView(
         children: <Widget>[
@@ -76,6 +85,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(product.vendor),
                 const SizedBox(height: 8),
                 Text(product.title,
                     style: Theme.of(context)
@@ -91,6 +101,19 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       .copyWith(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 12),
+                SizedBox(
+                  width: double.infinity,
+                  height: 48,
+                  child: FlatButton(
+                    child: const Text('カートに入れる'),
+                    color: Colors.orange,
+                    textColor: Colors.white,
+                    onPressed: () {
+                      _addProductToShoppingCart(variant);
+                    },
+                  ),
+                ),
+                const SizedBox(height: 12),
                 Html(
                   data: product.descriptionHtml,
                   onLinkTap: (url) {
@@ -98,7 +121,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     // open url in a webview
                   },
                 ),
-                Text(product.handle)
               ],
             ),
           ),
@@ -123,5 +145,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     print(checkoutId);
     //Adds a product variant to a specific checkout id
     await shopifyCheckout.checkoutLineItemsReplace(checkoutId, [variant.id]);
+    final checkout = await shopifyCheckout.getCheckoutInfoQuery(checkoutId);
+    print(checkout.lineItems.lineItemList.length);
   }
 }

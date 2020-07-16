@@ -12,6 +12,7 @@ dependencies:
   cupertino_icons: ^0.1.3
   provider:
   flutter_simple_shopify:
+    path: packages/flutter_simple_shopify
   flutter_dotenv:
   smooth_page_indicator:
   flutter_html:

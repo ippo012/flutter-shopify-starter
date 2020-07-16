@@ -109,7 +109,7 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
         widget.collectionId,
         4,
         null,
-        sortKey: SortKeyProductCollection.RELEVANCE,
+        SortKeyProduct.RELEVANCE,
       );
       if (mounted) {
         setState(() {

@@ -22,6 +22,15 @@ class _HomeTabState extends State<HomeTab> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.shopping_cart,
+              size: 16,
+            ),
+            onPressed: () {},
+          )
+        ],
       ),
       body: Center(
         child: _isLoading
@@ -45,8 +54,8 @@ class _HomeTabState extends State<HomeTab> {
   Future<void> _fetchProducts() async {
     try {
       final shopifyStore = ShopifyStore.instance;
-      final bestSellingProducts = await shopifyStore.getNProducts(20,
-          reverse: false, sortKey: SortKeyProduct.BEST_SELLING);
+      final bestSellingProducts = await shopifyStore.getNProducts(false,
+          n: 20, sortKey: SortKeyProduct.BEST_SELLING);
       if (mounted) {
         setState(() {
           products = bestSellingProducts;

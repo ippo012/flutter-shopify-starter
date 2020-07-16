@@ -1,0 +1,3 @@
+[submodule "flutter_simple_shopify"]
+	path = flutter_simple_shopify
+	url = git@github.com:ippo012/flutter_simple_shopify.git
