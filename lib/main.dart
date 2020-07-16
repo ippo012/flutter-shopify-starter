@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     final typography = Typography.material2018();
     var appBartTextTheme = typography.englishLike.merge(typography.black);
     appBartTextTheme = appBartTextTheme.copyWith(
-        headline6: appBartTextTheme.headline6.copyWith(fontSize: 16),
+        headline6: appBartTextTheme.headline6.copyWith(fontSize: 14),
         subtitle1: appBartTextTheme.subtitle1);
 
     return MaterialApp(
@@ -33,7 +33,8 @@ class MyApp extends StatelessWidget {
             color: Colors.white,
             textTheme: appBartTextTheme,
             iconTheme: const IconThemeData(
-              color: Color(0xFF666666),
+              // color: Color(0xFF666666),
+              size: 10,
             ),
             elevation: 0,
           )),

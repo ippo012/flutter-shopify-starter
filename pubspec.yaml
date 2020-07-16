@@ -13,6 +13,9 @@ dependencies:
   provider:
   flutter_simple_shopify:
   flutter_dotenv:
+  smooth_page_indicator:
+  flutter_html:
+  flutter_svg: ^0.18.0
 
 dev_dependencies:
   flutter_test:
